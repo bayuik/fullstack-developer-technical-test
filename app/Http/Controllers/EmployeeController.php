@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
+
 
 class EmployeeController extends Controller
 {
@@ -14,7 +16,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::all();
+        return view('employee.index', compact('employees'));
     }
 
     /**
@@ -24,7 +27,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee.create');
     }
 
     /**
@@ -35,7 +38,31 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'image' => 'mimes:jpg,png',
+            ],
+            $messages = [
+                'required' => 'The :attribute field is required.',
+                'mimes' => 'Only jpg and png are allowed.'
+            ]
+        );
+
+        $employee = new Employee;
+        $employee->name = $request->name;
+        $employee->nip = $request->nip;
+        $employee->date_of_birth = $request->date_of_birth;
+        // $employee->year_of_birth = $request->year_of_birth;
+        $employee->address = $request->address;
+        $employee->religion = $request->religion;
+        $employee->position_id = $request->position;
+        $employee->department = $request->department;
+        $employee->status = $request->status;
+        $employee->image = $request->image;
+        $employee->save();
+
+        return redirect()->route('employee.index');
     }
 
     /**
@@ -46,7 +73,8 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        $employees = Employee::all();
+        return view('employee.index', compact('employees'));
     }
 
     /**
