@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="csrf-token" content="2yi3JZoxVmPMIwrXj81EGV1L3XvHxUbspOXMe9ww">
+<title>Installation - Laravel DataTables - YajraBox</title>
+
+<meta name="title" content="YajraBox - Arjay Angeles (yajra) open source projects">
+<meta name="description" content="Arjay Angeles, also known as yajra, is an open source software advocate and a Laravel enthusiast. He is the author of many open source projects and a contributor to the Laravel community.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yajrabox.com/">
+<meta property="og:title" content="YajraBox - Arjay Angeles (yajra) open source projects">
+<meta property="og:description" content="Arjay Angeles, also known as yajra, is an open source software advocate and a Laravel enthusiast. He is the author of many open source projects and a contributor to the Laravel community.">
+<meta property="og:image" content="https://yajrabox.com/img/og-image.jpg">
+
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://yajrabox.com/">
+<meta property="twitter:title" content="YajraBox - Arjay Angeles (yajra) open source projects">
+<meta property="twitter:description" content="Arjay Angeles, also known as yajra, is an open source software advocate and a Laravel enthusiast. He is the author of many open source projects and a contributor to the Laravel community.">
+<meta property="twitter:image" content="https://yajrabox.com/img/og-image.jpg">
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://yajrabox.com/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://yajrabox.com/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://yajrabox.com/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="https://yajrabox.com/img/favicon/site.webmanifest">
+<link rel="mask-icon" href="https://yajrabox.com/img/favicon/safari-pinned-tab.svg" color="#ff2d20">
+<link rel="shortcut icon" href="https://yajrabox.com/img/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#ff2d20">
+<meta name="msapplication-config" content="https://yajrabox.com/img/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+
+<link rel="stylesheet" href="https://use.typekit.net/ins2wgm.css">
+
+<link rel="stylesheet" href="https://yajrabox.com/build/assets/docs.04ed4d3f.css" /><script type="module" src="https://yajrabox.com/build/assets/docs.d7878d25.js"></script>
+
+<style>[wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {display: none;}[wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {display:none;}[wire\:offline] {display: none;}[wire\:dirty]:not(textarea):not(input):not(select) {display: none;}input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {animation-duration: 50000s;animation-name: livewireautofill;}@keyframes livewireautofill { from {} }</style>
+<script>
+        const alwaysLightMode = false;
+    </script>
+<script>
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (localStorage.theme === 'system') {
+            if (e.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+
+        updateThemeAndSchemeColor();
+    });
+
+    function updateTheme() {
+        if (!('theme' in localStorage)) {
+            localStorage.theme = 'system';
+        }
+
+        switch (localStorage.theme) {
+            case 'system':
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+                document.documentElement.setAttribute('color-theme', 'system');
+                break;
+
+            case 'dark':
+                document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('color-theme', 'dark');
+                break;
+
+            case 'light':
+                document.documentElement.classList.remove('dark');
+                document.documentElement.setAttribute('color-theme', 'light');
+                break;
+        }
+
+        updateThemeAndSchemeColor();
+    }
+
+    function updateThemeAndSchemeColor() {
+        if (! alwaysLightMode) {
+            if (document.documentElement.classList.contains('dark')) {
+                document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'dark');
+                document.querySelector('meta[name="theme-color"]').setAttribute('content', '#171923');
+
+                return;
+            }
+
+            document.querySelector('meta[name="color-scheme"]').setAttribute('content', 'light');
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff');
+        }
+    }
+
+    updateTheme();
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2399525660597307" crossorigin="anonymous"></script>
+</head>
+<body x-data="{
+        navIsOpen: false,
+        searchIsOpen: false,
+        search: '',
+    }" class="language-php h-full w-full font-sans text-gray-900 antialiased">
+<a id="skip-to-content-link" href="#main-content" class="absolute bg-gray-100 px-4 py-2 top-3 left-3 text-gray-700 shadow-xl">
+Skip to content
+</a>
+<div class="relative overflow-auto dark:bg-dark-700" id="docsScreen">
+<div class="relative lg:flex lg:items-start">
+<aside class="hidden fixed top-0 bottom-0 left-0 z-20 h-full w-16 bg-gradient-to-b from-gray-100 to-white transition-all duration-300 overflow-hidden lg:sticky lg:w-80 lg:shrink-0 lg:flex lg:flex-col lg:justify-end lg:items-end 2xl:max-w-lg 2xl:w-full dark:from-dark-800 dark:to-dark-700">
+<div class="relative min-h-0 flex-1 flex flex-col xl:w-80">
+<a href="/" class="flex items-center py-8 px-4 lg:px-8 xl:px-16">
+<img src="https://yajrabox.com/img/logo.min.svg" alt="YajraBox" class="hidden lg:block mr-2" width="114" height="29">
+<h1 class="font-bold dark:text-gray-400">Laravel DataTables</h1>
+</a>
+<div class="overflow-y-auto overflow-x-hidden px-4 lg:overflow-hidden lg:px-8 xl:px-16">
+<iframe src="https://github.com/sponsors/yajra/button" title="Sponsor yajra" height="35" width="116" style="border: 0;"></iframe>
+<nav id="indexed-nav" class="hidden lg:block lg:mt-4">
+<div class="docs_sidebar">
+<ul>
+<li>
+<h2>Prologue</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/releases">Release Notes</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/upgrade">Upgrade Guide</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/contributing">Contribution Guide</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/security">Security Issues</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Getting Started</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/introduction">Introduction</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/installation">Installation</a>
+</li>
+<li>
+<a href="https://datatables.yajrabox.com/">Demo Application</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/community-links">Community Links</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Tutorials</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/quick-starter">Quick Starter</a>
+</li>
+<li>
+<a href="https://datatables.yajrabox.com/service">Service Implementation</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Configuration</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/general-settings">General Settings</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/debugger">Debugging Mode</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/error-handler">Error Handler</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>DataTables Classes</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/engine-eloquent">Eloquent</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/engine-query">Query Builder</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/engine-collection">Collection</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Response</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/response-array">Array Response</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-object">Object Response</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-with">Additional Data Response</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-only">Only Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-resource">Response Resource</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Column Editing</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/add-column">Add Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/add-columns">Add Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/edit-column">Edit Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/remove-column">Remove Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/index-column">Index Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/raw-columns">Raw Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/export-column">Export Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/print-column">Print Columns</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Row Editing</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/row-options">Row Options</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/row-options#row-id">Row ID</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/row-options#row-class">Row Class</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/row-options#row-data">Row Data</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/row-options#row-attributes">Row Attributes</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Searching</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/manual-search">Manual Search</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/filter-column">Filter Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/regex">Regex Search</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/smart-search">Smart Search</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/starts-with-search">Starts With Search</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/relationships">Relationships</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Sorting/Ordering</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/manual-order">Manual Order</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/order-column">Order Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/order-columns">Order Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/order-by-nulls-last">Order By Nulls Last</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>SearchPanes</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/search-panes-starter">Add SearchPanes</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/search-panes-hide-columns">Hide Columns in SearchPanes</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/search-panes-options">Further options</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Utilities</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/xss">XSS filtering</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/blacklist">Blacklist Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/whitelist">Whitelist Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/set-total-records">Set Total Records</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/skip-total-records">Skip Total Records</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/set-filtered-records">Set Filtered Records</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/skip-paging">Skip Paging</a>
+</li>
+</ul>
+</li>
+</ul>
+<h3>PLUGINS</h3>
+<ul>
+<li>
+<h2>HTML Builder</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/html-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder">Builder</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-table">Table</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-config">Config</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-column">Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-column-builder">Column Builder</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-macro">Macro</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-ajax">Ajax</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-minified-ajax">Minified Ajax</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-post-ajax">Post Ajax</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-parameters">Parameters</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-callbacks">Events/Callbacks</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-action">Add Action</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-checkbox">Add Checkbox</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-index">Add Index</a>
+</li>
+<li>
+<a href="https://github.com/yajra/laravel-datatables-html">Github</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Buttons</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-config">Configuration</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-starter">Quick Starter</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-export">DataTable Buttons</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-custom">Custom Actions</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-with">Sending Parameters</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-extended">Extended DataTable</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-console">Buttons Command</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-laravel-excel">Laravel Excel Export</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-fast-excel">Fast Excel Export</a>
+</li>
+<li>
+<a href="https://github.com/yajra/laravel-datatables-buttons">Github</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Fractal</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/fractal-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-fractal">Fractal Transformer</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-fractal-serializer">Fractal Serializer</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Export</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/exports-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/exports-usage">Usage</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/exports-purge">Purge</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/exports-options">Options</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Editor</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/editor-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-command">Editor Command</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-model">Editor Model</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-rules">Editor Rules</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-events">Event Hooks</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-usage">Usage</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-tutorial">Tutorial</a>
+</li>
+<li>
+<a href="https://github.com/yajra/laravel-datatables-editor">Github</a>
+</li>
+</ul>
+</li>
+</ul>
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2399525660597307" data-ad-slot="5965792075" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+</nav>
+</div>
+</div>
+</aside>
+<header class="lg:hidden" @keydown.window.escape="navIsOpen = false" @click.away="navIsOpen = false">
+<div class="relative mx-auto w-full py-10 bg-white transition duration-200 dark:bg-dark-700">
+<div class="mx-auto px-8 sm:px-16 flex items-center justify-between">
+<a href="/" class="flex items-center">
+<img class="" width="50" height="50" src="https://yajrabox.com/img/logomark.min.svg" alt="YajraBox">
+<img class="hidden ml-5 sm:block" height="29" width="114" src="https://yajrabox.com/img/logotype.min.svg" alt="YajraBox">
+<h3 class="font-bold ml-5 text-2xl dark:text-gray-400">Laravel DataTables</h3>
+</a>
+<div class="flex-1 flex items-center justify-end">
+<button id="header__sun" onclick="toSystemMode()" title="Switch to system theme" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+<circle cx="12" cy="12" r="4"></circle>
+<path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+</svg>
+</button>
+<button id="header__moon" onclick="toLightMode()" title="Switch to light mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+<path fill="currentColor" d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
+</svg>
+</button>
+<button id="header__indeterminate" onclick="toDarkMode()" title="Switch to dark mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+ <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+<path fill="currentColor" d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20V4Z" />
+</svg>
+</button>
+<button class="ml-2 relative w-10 h-10 p-2 text-red-600 lg:hidden focus:outline-none focus:shadow-outline" aria-label="Menu" @click.prevent="navIsOpen = !navIsOpen">
+<svg x-show="! navIsOpen" x-transition.opacity class="absolute inset-0 mt-2 ml-2 w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<line x1="3" y1="12" x2="21" y2="12"></line>
+<line x1="3" y1="6" x2="21" y2="6"></line>
+<line x1="3" y1="18" x2="21" y2="18"></line>
+</svg>
+<svg x-show="navIsOpen" x-transition.opacity x-cloak class="absolute inset-0 mt-2 ml-2 w-6 h-6" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+</div>
+<span :class="{ 'shadow-sm': navIsOpen }" class="absolute inset-0 z-20 pointer-events-none"></span>
+</div>
+<div x-show="navIsOpen" x-transition:enter="duration-150" x-transition:leave="duration-100 ease-in" x-cloak>
+<nav x-show="navIsOpen" x-cloak class="absolute w-full transform origin-top shadow-sm z-10" x-transition:enter="duration-150 ease-out" x-transition:enter-start="opacity-0 -translate-y-8 scale-75" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="duration-100 ease-in" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 -translate-y-8 scale-75">
+<div class="relative p-8 bg-white docs_sidebar dark:bg-dark-600">
+<ul>
+<li>
+<h2>Prologue</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/releases">Release Notes</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/upgrade">Upgrade Guide</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/contributing">Contribution Guide</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/security">Security Issues</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Getting Started</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/introduction">Introduction</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/installation">Installation</a>
+</li>
+<li>
+<a href="https://datatables.yajrabox.com/">Demo Application</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/community-links">Community Links</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Tutorials</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/quick-starter">Quick Starter</a>
+</li>
+<li>
+<a href="https://datatables.yajrabox.com/service">Service Implementation</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Configuration</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/general-settings">General Settings</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/debugger">Debugging Mode</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/error-handler">Error Handler</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>DataTables Classes</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/engine-eloquent">Eloquent</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/engine-query">Query Builder</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/engine-collection">Collection</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Response</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/response-array">Array Response</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-object">Object Response</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-with">Additional Data Response</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-only">Only Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-resource">Response Resource</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Column Editing</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/add-column">Add Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/add-columns">Add Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/edit-column">Edit Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/remove-column">Remove Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/index-column">Index Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/raw-columns">Raw Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/export-column">Export Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/print-column">Print Columns</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Row Editing</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/row-options">Row Options</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/row-options#row-id">Row ID</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/row-options#row-class">Row Class</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/row-options#row-data">Row Data</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/row-options#row-attributes">Row Attributes</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Searching</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/manual-search">Manual Search</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/filter-column">Filter Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/regex">Regex Search</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/smart-search">Smart Search</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/starts-with-search">Starts With Search</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/relationships">Relationships</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Sorting/Ordering</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/manual-order">Manual Order</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/order-column">Order Column</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/order-columns">Order Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/order-by-nulls-last">Order By Nulls Last</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>SearchPanes</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/search-panes-starter">Add SearchPanes</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/search-panes-hide-columns">Hide Columns in SearchPanes</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/search-panes-options">Further options</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Utilities</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/xss">XSS filtering</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/blacklist">Blacklist Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/whitelist">Whitelist Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/set-total-records">Set Total Records</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/skip-total-records">Skip Total Records</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/set-filtered-records">Set Filtered Records</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/skip-paging">Skip Paging</a>
+</li>
+</ul>
+</li>
+</ul>
+<h3>PLUGINS</h3>
+<ul>
+<li>
+<h2>HTML Builder</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/html-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder">Builder</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-table">Table</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-config">Config</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-column">Columns</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-column-builder">Column Builder</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-macro">Macro</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-ajax">Ajax</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-minified-ajax">Minified Ajax</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-post-ajax">Post Ajax</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-parameters">Parameters</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-callbacks">Events/Callbacks</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-action">Add Action</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-checkbox">Add Checkbox</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/html-builder-index">Add Index</a>
+</li>
+<li>
+<a href="https://github.com/yajra/laravel-datatables-html">Github</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Buttons</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-config">Configuration</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-starter">Quick Starter</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-export">DataTable Buttons</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-custom">Custom Actions</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-with">Sending Parameters</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-extended">Extended DataTable</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-console">Buttons Command</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-laravel-excel">Laravel Excel Export</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/buttons-fast-excel">Fast Excel Export</a>
+</li>
+<li>
+<a href="https://github.com/yajra/laravel-datatables-buttons">Github</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Fractal</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/fractal-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-fractal">Fractal Transformer</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/response-fractal-serializer">Fractal Serializer</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Export</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/exports-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/exports-usage">Usage</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/exports-purge">Purge</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/exports-options">Options</a>
+</li>
+</ul>
+</li>
+<li>
+<h2>Editor</h2>
+<ul>
+<li>
+<a href="/docs/laravel-datatables/master/editor-installation">Installation</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-command">Editor Command</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-model">Editor Model</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-rules">Editor Rules</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-events">Event Hooks</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-usage">Usage</a>
+</li>
+<li>
+<a href="/docs/laravel-datatables/master/editor-tutorial">Tutorial</a>
+</li>
+<li>
+<a href="https://github.com/yajra/laravel-datatables-editor">Github</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div>
+ </header>
+<section class="flex-1 dark:bg-dark-700">
+<div class="max-w-screen-lg px-8 sm:px-16 lg:px-24">
+<div class="flex flex-col items-end border-b border-gray-200 py-1 transition-colors dark:border-gray-700 lg:mt-8 lg:flex-row-reverse">
+<div class="hidden lg:flex items-center justify-center ml-8">
+<button id="header__sun" onclick="toSystemMode()" title="Switch to system theme" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+<circle cx="12" cy="12" r="4"></circle>
+<path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+</svg>
+</button>
+<button id="header__moon" onclick="toLightMode()" title="Switch to light mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+<path fill="currentColor" d="M17.75,4.09L15.22,6.03L16.13,9.09L13.5,7.28L10.87,9.09L11.78,6.03L9.25,4.09L12.44,4L13.5,1L14.56,4L17.75,4.09M21.25,11L19.61,12.25L20.2,14.23L18.5,13.06L16.8,14.23L17.39,12.25L15.75,11L17.81,10.95L18.5,9L19.19,10.95L21.25,11M18.97,15.95C19.8,15.87 20.69,17.05 20.16,17.8C19.84,18.25 19.5,18.67 19.08,19.07C15.17,23 8.84,23 4.94,19.07C1.03,15.17 1.03,8.83 4.94,4.93C5.34,4.53 5.76,4.17 6.21,3.85C6.96,3.32 8.14,4.21 8.06,5.04C7.79,7.9 8.75,10.87 10.95,13.06C13.14,15.26 16.1,16.22 18.97,15.95M17.33,17.97C14.5,17.81 11.7,16.64 9.53,14.5C7.36,12.31 6.2,9.5 6.04,6.68C3.23,9.82 3.34,14.64 6.35,17.66C9.37,20.67 14.19,20.78 17.33,17.97Z" />
+</svg>
+</button>
+<button id="header__indeterminate" onclick="toDarkMode()" title="Switch to dark mode" class="relative w-10 h-10 focus:outline-none focus:shadow-outline text-gray-500">
+<svg style="width:24px;height:24px" viewBox="0 0 24 24">
+<path fill="currentColor" d="M12 2A10 10 0 0 0 2 12A10 10 0 0 0 12 22A10 10 0 0 0 22 12A10 10 0 0 0 12 2M12 4A8 8 0 0 1 20 12A8 8 0 0 1 12 20V4Z" />
+</svg>
+</button>
+</div>
+<div class="w-full lg:w-40 lg:pl-12">
+<div>
+<label class="text-gray-600 text-xs tracking-widest uppercase dark:text-gray-500" for="version-switcher">Version</label>
+<div x-data class="relative w-full bg-white transition-all duration-500 focus-within:border-gray-600 dark:bg-gray-800">
+<select id="version-switcher" aria-label="Laravel version" class="appearance-none flex-1 w-full px-0 py-1 placeholder-gray-900 tracking-wide bg-white focus:outline-none dark:bg-dark-700 dark:text-gray-400 dark:placeholder-gray-500" @change="window.location = $event.target.value">
+<option selected value="https://yajrabox.com/docs/laravel-datatables/master/installation">Master</option>
+<option value="https://yajrabox.com/docs/laravel-datatables/10.0/installation">10.0</option>
+<option value="https://yajrabox.com/docs/laravel-datatables/9.0/installation">9.0</option>
+<option value="https://yajrabox.com/docs/laravel-datatables/8.0/installation">8.0</option>
+<option value="https://yajrabox.com/docs/laravel-datatables/7.0/installation">7.0</option>
+<option value="https://yajrabox.com/docs/laravel-datatables/6.0/installation">6.0</option>
+ </select>
+<img class="absolute inset-y-0 right-0 mt-2.5 w-2.5 h-2.5 text-gray-900 pointer-events-none" id="docs_search__version_arrow" src="https://yajrabox.com/img/icons/drop_arrow.min.svg" alt="">
+<img class="absolute inset-y-0 right-0 mt-2.5 w-2.5 h-2.5 text-gray-900 pointer-events-none" id="docs_search__version_arrow_dark" src="https://yajrabox.com/img/icons/drop_arrow.dark.min.svg" alt="">
+</div>
+</div>
+</div>
+<div class="relative mt-8 flex items-center justify-end w-full h-10 lg:mt-0">
+<div class="flex-1 flex items-center">
+<button class="relative inline-flex items-center text-gray-800 transition-colors dark:text-gray-400 w-full" @click.prevent="$dispatch('toggle-search-modal')">
+<svg class="w-5 h-5 text-gray-700 pointer-events-none transition-colors dark:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+</svg>
+<span class="ml-3">Search</span>
+</button>
+</div>
+</div> </div>
+<section class="mt-8 md:mt-16">
+<section class="docs_main">
+<blockquote>
+<div class="callout">
+<div class="mb-10 max-w-2xl mx-auto px-4 py-8 shadow-lg lg:flex lg:items-center">
+<div class="w-20 h-20 mb-6 flex items-center justify-center shrink-0 bg-orange-600 lg:mb-0">
+<img src="https://yajrabox.com/img/callouts/exclamation.min.svg" alt="Icon" class="opacity-75" />
+</div>
+<p class="mb-0 lg:ml-4">
+<strong>WARNING</strong> You're browsing the documentation for an
+upcoming version of <strong>Laravel DataTables</strong>.
+The documentation and features of this release are subject to change.
+</p>
+</div>
+</div>
+</blockquote>
+<div id="main-content" class="mb-10">
+<div class="block mb-10">
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2399525660597307" data-ad-slot="6524198363" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+<h1>Installation</h1>
+<ul>
+<li>
+<a href="#installation">Installation</a>
+<ul>
+<li>
+<a href="#requirements">Requirements</a>
+</li>
+<li>
+<a href="#installing-laravel-datatables">Installing Laravel-DataTables</a>
+</li>
+<li>
+<a href="#configuration">Configuration</a>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="installation"></a></p>
+<h2>Installation</h2>
+<p><a name="requirements"></a></p>
+<h3>Requirements</h3>
+<ul>
+<li>
+<a href="https://github.com/laravel/framework">Laravel 9+</a>
+</li>
+<li>
+<a href="https://datatables.net/">jQuery DataTables v1.10.x</a>
+</li>
+</ul>
+<p><a name="installing-laravel-datatables"></a></p>
+<h3>Installing Laravel DataTables</h3>
+<p>Laravel DataTables can be installed with <a href="https://getcomposer.org/doc/00-intro.md">Composer</a>. More details about this package in Composer can be found <a href="https://packagist.org/packages/yajra/laravel-datatables-oracle">here</a>.</p>
+<p>Run the following command in your project to get the latest version of the package:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><div class='line'><span style="color: #BFC7D5;">composer </span><span style="color: #BFC7D5;">require</span><span style="color: #BFC7D5;"> </span><span style="color: #BFC7D5;">yajra/laravel-datatables-oracle:</span><span style="color: #D9F5DD;">&quot;</span><span style="color: #C3E88D;">^10.0</span><span style="color: #D9F5DD;">&quot;</span></div></code></pre>
+</div>
+<p>If you are using most of the DataTables plugins like Buttons &amp; Html, you can alternatively use the all-in-one installer package.</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="bash" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><div class='line'><span style="color: #BFC7D5;">composer </span><span style="color: #BFC7D5;">require</span><span style="color: #BFC7D5;"> </span><span style="color: #BFC7D5;">yajra/laravel-datatables:^9.0</span></div></code></pre>
+</div>
+<p><a name="configuration"></a></p>
+<h3>Configuration</h3>
+<blockquote>
+<p>This step is optional if you are using Laravel 5.5+</p>
+</blockquote>
+<p>Open the file <code>config/app.php</code> and then add following service provider.</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><div class='line'><span style="color: #D9F5DD;">&#39;</span><span style="color: #C3E88D;">providers</span><span style="color: #D9F5DD;">&#39;</span><span style="color: #BFC7D5;"> </span><span style="color: #89DDFF;">=&gt;</span><span style="color: #BFC7D5;"> [</span></div><div class='line'><span style="color: #BFC7D5;">    </span><span style="color: #697098;">//</span><span style="color: #697098;"> ...</span></div><div class='line'><span style="color: #BFC7D5;">    Yajra\DataTables\</span><span style="color: #FFCB8B;">DataTablesServiceProvider</span><span style="color: #89DDFF;">::</span><span style="color: #C792EA;">class</span><span style="color: #BFC7D5;">,</span></div><div class='line'><span style="color: #BFC7D5;">],</span></div></code></pre>
+</div>
+<p>After completing the step above, use the following command to publish configuration &amp; assets:</p>
+<div class="code-container">
+<pre><code data-theme="olaolu-palenight" data-lang="php" class='torchlight' style='background-color: #292D3E; --theme-selection-background: #7580B850;'><div class='line'><span style="color: #82AAFF;">php</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">artisan</span><span style="color: #BFC7D5;"> </span><span style="color: #82AAFF;">vendor</span><span style="color: #BFC7D5;">:</span><span style="color: #82AAFF;">publish</span><span style="color: #BFC7D5;"> </span><span style="color: #89DDFF;">--</span><span style="color: #82AAFF;">tag</span><span style="color: #C792EA;">=</span><span style="color: #82AAFF;">datatables</span></div></code></pre>
+</div>
+<div class="border-box flex">
+<a title="Something wrong? You can edit the file and contribute." target="_blank" class="btn-sm btn-group-item btn float-right flex justify-between dark:text-white text-sm items-center font-medium text-red-600 mt-10" href="https://github.com/yajra/laravel-datatables-docs/edit/master/installation.md">
+<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" fill="currentColor" class="octicon octicon-pencil">
+<path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>
+</svg>
+<span class="ml-2">Edit this page on GitHub</span>
+</a>
+</div>
+</div>
+</section>
+</section>
+</div>
+</section>
+</div>
+</div>
+<footer class="relative pt-12 dark:bg-dark-700">
+<div class="max-w-screen-2xl mx-auto w-full px-8">
+<div class="text-center text-xs text-gray-700 sm:text-sm dark:text-gray-500">
+<div class="flex justify-center">
+<div class="max-w-sm">
+Arjay Angeles, also known as "<cite>yajra</cite>", is an open source software advocate and a Laravel enthusiast. He is the author of many open source projects and a contributor to the Laravel community.
+</div>
+</div>
+<div>
+<ul class="mt-6 flex justify-center items-center space-x-3">
+<li>
+<a href="https://twitter.com/aqangeles">
+<img id="footer__twitter_dark" class="hidden dark:inline-block w-6 h-6" src="https://yajrabox.com/img/social/twitter.dark.min.svg" alt="Twitter" width="24" height="20" loading="lazy">
+<img id="footer__twitter" class="inline-block dark:hidden w-6 h-6" src="https://yajrabox.com/img/social/twitter.min.svg" alt="Twitter" width="24" height="20" loading="lazy">
+</a>
+</li>
+<li>
+<a href="https://github.com/yajra">
+<img id="footer__github_dark" class="hidden dark:inline-block w-6 h-6" src="https://yajrabox.com/img/social/github.dark.min.svg" alt="GitHub" width="24" height="24" loading="lazy">
+<img id="footer__github" class="inline-block dark:hidden w-6 h-6" src="https://yajrabox.com/img/social/github.min.svg" alt="GitHub" width="24" height="24" loading="lazy">
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-10 border-t pt-6 pb-16 border-gray-200 dark:border-dark-500">
+<div class="flex justify-center">
+<p class="flex text-xs text-gray-700 max-w-sm dark:text-gray-400">
+YajraBox Copyright &copy; 2023.
+</p>
+</div>
+<div class="mt-6 flex justify-center">
+<p class="flex text-xs text-gray-700 max-w-sm dark:text-gray-400">
+Code highlighting provided by <a href="https://torchlight.dev">Torchlight</a>
+</p>
+</div>
+</div>
+</div>
+</footer>
+<div x-data="searchComponent()" @toggle-search-modal.window="open = !open" @keydown.window.escape="close" @keydown.window="handleKeydown" @keydown.escape.prevent.stop="close" x-init="$nextTick(() => {
+        if (! window.URLSearchParams) {
+            return
+        }
+
+        const searchQuery = new URLSearchParams(document.location.search).get('q')
+
+        if (searchQuery) {
+            search = searchQuery
+            open = true
+        }
+    })" x-show="open" x-cloak x-trap.noscroll.inert="open" role="dialog" aria-modal="true" x-id="['search-modal']" :aria-labelledby="$id('search-modal')" class="fixed inset-0 z-50 text-gray-400 overflow-y-auto">
+<div x-show="open" x-transition.opacity class="fixed inset-0 bg-dark-900 bg-opacity-80"></div>
+<div x-show="open" x-transition @click="close()" class="relative min-h-screen flex items-start justify-center p-4 lg:py-20">
+<div @click.stop class="relative max-w-2xl w-full bg-dark-700 pt-8 px-8 pb-16">
+<div class="relative w-full border-b border-gray-600 border-opacity-50 overflow-hidden transition-all duration-500 focus-within:border-gray-600">
+<svg class="absolute inset-y-0 left-0 mt-1 w-5 h-5 text-gray-500 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+</svg>
+<input x-model.debounce.200ms="search" x-ref="searchInput" class="flex-1 w-full pl-8 pr-4 py-1 tracking-wide text-gray-400 placeholder-gray-500 bg-transparent focus:outline-none" placeholder="Search Docs (Press '/')" aria-label="Search in the documentation" @keydown.arrow-up.prevent="focusPreviousResult()" @keydown.arrow-down.prevent="focusNextResult()">
+</div>
+<div x-show="search">
+<div x-show="hits.length" x-cloak class="mt-5 divide-y divide-gray-700 z-30">
+<template x-for="(hit, index) in hits" :key="index" hidden>
+<div>
+<a :id="'search-result-' + index" :href="hit.url" class="search-result -mx-2 block p-3 text-gray-400 transition-colors duration-200 focus:outline-none focus:bg-dark-800 focus:text-gray-200 hover:text-gray-200" @keydown.arrow-up.prevent="focusPreviousResult(index)" @keydown.arrow-down.prevent="focusNextResult(index)" @click="close()">
+<div x-show="hit._highlightResult.hierarchy.lvl0" class="text-sm font-medium" x-html="hit._highlightResult.hierarchy.lvl0 ? hit._highlightResult.hierarchy.lvl0.value : ''"></div>
+<div class="mt-2">
+<div x-show="hit._highlightResult.hierarchy.lvl1" class="text-sm">
+<span class="text-red-600 opacity-75">#</span> <span x-html="hit._highlightResult.hierarchy.lvl1 ? hit._highlightResult.hierarchy.lvl1.value : ''"></span>
+</div>
+<div x-show="hit._highlightResult.hierarchy.lvl2" class="text-sm">
+>
+<span x-html="hit._highlightResult.hierarchy.lvl2 ? hit._highlightResult.hierarchy.lvl2.value : ''"></span>
+</div>
+<div x-show="hit._highlightResult.hierarchy.lvl3" class="text-sm">
+>
+<span x-html="hit._highlightResult.hierarchy.lvl3 ? hit._highlightResult.hierarchy.lvl3.value : ''"></span>
+ </div>
+<div x-show="hit._highlightResult.hierarchy.lvl4" class="text-sm">
+>
+<span x-html="hit._highlightResult.hierarchy.lvl4 ? hit._highlightResult.hierarchy.lvl4.value : ''"></span>
+</div>
+<div x-show="hit._highlightResult.hierarchy.lvl5" class="text-sm">
+>
+<span x-html="hit._highlightResult.hierarchy.lvl5 ? hit._highlightResult.hierarchy.lvl5.value : ''"></span>
+</div>
+</div>
+</a>
+</div>
+</template>
+</div>
+<div x-show="! hits.length && searching" x-cloak class="mt-8 pb-32">
+Searching...
+</div>
+<div x-show="! hits.length && ! searching" x-cloak class="mt-8 pb-32">
+<div x-text="`We didn't find any result for '${search}'. Sorry!`"></div>
+</div>
+</div>
+<div x-show="! search" class="mt-8 pb-32">
+<p>Enter a search term to find results in the documentation.</p>
+</div>
+<div class="absolute bottom-0 inset-x-0 border-t border-dark-800 text-gray-400 flex justify-end">
+<a class="px-4 py-2 inline-block" target="_blank" href="https://www.algolia.com/?utm_source=yajra&utm_medium=link&utm_campaign=yajra_documentation_search">
+<img width="105" src="https://yajrabox.com/img/icons/algolia.dark.min.svg" id="docs_search__algolia_dark" alt="Algolia">
+</a>
+</div>
+</div>
+<button x-show="open" x-transition.opacity class="absolute top-8 right-8 text-gray-400" @click.prevent="close">
+<span class="sr-only">Close search</span>
+<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+</svg>
+</button>
+</div>
+</div>
+<script>
+    var algolia_app_id = 'OAUKTNHIM0';
+    var algolia_search_key = 'fb796eddc665a2f8cb60307d48f7d257';
+    var version = 'master';
+    var package = 'Laravel DataTables';
+</script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L84M3XWG39"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-L84M3XWG39');
+    </script>
+</body>
+</html>

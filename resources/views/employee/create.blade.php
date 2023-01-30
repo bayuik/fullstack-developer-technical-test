@@ -21,25 +21,14 @@
                                 name="nip" placeholder="Enter Your NIP">
                         </div>
                         <div class="form-group" id="date_birth">
-                            <label for="tangal_lahir">Tanggal Lahir</label>
+                            <label for="date_of_birth">One Year View</label>
                             <div class="input-group date">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                 </div>
-                                <input type="date" class="form-control" value="2023" id="tangal_lahir"
-                                    name="date_of_birth">
+                                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth">
                             </div>
                         </div>
-                        {{-- <div class="form-group" id="simple-date2">
-                            <label for="year_of_birth">Tahun</label>
-                            <div class="input-group date">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                                </div>
-                                <input type="date" class="form-control" id="year_of_birth"
-                                    name="year_of_birth">
-                            </div>
-                        </div> --}}
                         <div class="form-group">
                             <label for="address">Alamat</label>
                             <textarea class="form-control" id="address" name="address" rows="3"></textarea>
@@ -51,8 +40,8 @@
                         </div>
                         <div class="form-group">
                             <label for="department">Department </label>
-                            <input type="text" class="form-control" id="department" aria-describedby="nameHelp" name="department"
-                                name="department" placeholder="Enter your Department">
+                            <input type="text" class="form-control" id="department" aria-describedby="nameHelp"
+                                name="department" name="department" placeholder="Enter your Department">
                         </div>
                         <div class="form-group">
                             <label for="religion">Agama</label>
@@ -93,7 +82,8 @@
                         <div class="form-group">
                             <label>Status Karyawan</label>
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="status" name="status" value="1">
+                                <input type="checkbox" class="custom-control-input" id="status" name="status"
+                                    value="1">
                                 <label class="custom-control-label" for="status">Is Active</label>
                             </div>
                         </div>

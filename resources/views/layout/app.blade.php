@@ -65,12 +65,57 @@
     <script src="{{ asset('js/ruang-admin.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="
+                        https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js
+                        "></script>
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css
+" rel="stylesheet">
+    </link>
     @stack('js')
     <script>
-        $(document).ready(function() {
+        $(document).ready(() => {
             $('#dataTableHover').DataTable();
         });
+
+        const deleteBtn = id => {
+            let url = "{{ url('/employee') }}" + "/" + id;
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    _method: "DELETE"
+                },
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: result => {
+                    location.reload();
+                },
+                error(err) {
+                    console.log(err);
+                }
+
+            });
+        }
+
+        $(document).on('change', '#status', function() {
+            let status = $(this).is(":checked") ? 1 : 0;
+            $('#status').val(status);
+        });
     </script>
+    @if (session()->has('message'))
+        <script>
+            Swal.fire({
+                type: '{{ session('message.type') }}',
+                title: '{{ session('message.text') }}',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
 
 </body>
 

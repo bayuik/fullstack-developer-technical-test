@@ -23,11 +23,17 @@
                             <tr>
                                 <td>{{ $employee->name }}</td>
                                 <td>{{ $employee->nip }}</td>
-                                <td>{{ $employee->position_id }}</td>
-                                <td>{{ $employee->status }}</td>
+                                <td>{{ $employee->position_name }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-primary">Detail</a>
-                                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                    @if ($employee->status == 1)
+                                        <span class="badge badge-success">Active</span>
+                                    @else
+                                        <span class="badge badge-danger">Inactive</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="/employee/{{$employee->id}}" class="btn btn-sm btn-primary">Detail</a>
+                                    <button type="button" id="btn-delete" onclick=deleteBtn({{$employee->id}}) class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
                         @endforeach

@@ -16,7 +16,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        // $employees = Employee::all();
+        $employees = Employee::join('positions', 'employees.position_id', '=', 'positions.id')
+            ->select('employees.*', 'positions.name as position_name')
+            ->get();
         return view('employee.index', compact('employees'));
     }
 
@@ -41,7 +44,7 @@ class EmployeeController extends Controller
         $this->validate(
             $request,
             [
-                'image' => 'mimes:jpg,png',
+                'image' => 'required|mimes:jpg,png',
             ],
             $messages = [
                 'required' => 'The :attribute field is required.',
@@ -60,9 +63,13 @@ class EmployeeController extends Controller
         $employee->department = $request->department;
         $employee->status = $request->status;
         $employee->image = $request->image;
+
         $employee->save();
 
-        return redirect()->route('employee.index');
+        return redirect()->route('employee.index')->with('message', [
+            'type' => 'Success',
+            'text' => 'Success to add employee',
+        ]);
     }
 
     /**
@@ -71,10 +78,10 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        $employees = Employee::all();
-        return view('employee.index', compact('employees'));
+        $employee = Employee::find($id);
+        return view('employee.show', compact('employee'));
     }
 
     /**
@@ -95,9 +102,47 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+
+        $this->validate(
+            $request,
+            [
+                'image' => 'required|mimes:jpg,png',
+            ],
+            $messages = [
+                'required' => 'The :attribute field is required.',
+                'mimes' => 'Only jpg and png are allowed.'
+            ]
+
+
+        );
+
+        $employee = Employee::find($id);
+        $employee->name = $request->name;
+        $employee->nip = $request->nip;
+        $employee->date_of_birth = $request->date_of_birth;
+        // $employee->year_of_birth = $request->year_of_birth;
+        $employee->address = $request->address;
+        $employee->religion = $request->religion;
+        $employee->position_id = $request->position;
+        $employee->department = $request->department;
+        $employee->status = $request->status;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+            $file->move('uploads/employee/', $filename);
+            $employee->image = $filename;
+        } else {
+            return $request;
+            $employee->image = '';
+        }
+        $employee->save();
+        return redirect('employee')->with('message', [
+            'type' => 'Success',
+            'text' => 'Success to update employee',
+        ]);
     }
 
     /**
@@ -106,8 +151,12 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        $employee = Employee::find($id)->delete();
+        return redirect('employee')->with('message', [
+            'type' => 'success',
+            'text' => 'Success to delete employee',
+        ]);
     }
 }

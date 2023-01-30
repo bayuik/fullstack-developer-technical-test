@@ -20,3 +20,9 @@ Route::get('/', function () {
 });
 Route::resource('position',PositionController::class);
 Route::resource('employee',EmployeeController::class);
+Route::get('/employee/{id}', 'EmployeeController@show');
+Route::delete('employee/{id}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+Route::put('/employee/{id}', 'EmployeeController@update')->name('employee.update');
+
+
+
